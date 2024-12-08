@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Category List</title>
+</head>
+<body>
+<h2>Category List</h2>
+<a href="/categorylist">Add New Category</a>
+
+<div th:if="${error}" style="color: red;">
+    <p th:text="${error}"></p>
+</div>
+<div th:if="${success}" style="color: green;">
+    <p th:text="${success}"></p>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Category Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="category : ${categories}">
+        <td th:text="${category.categoryname}">Category Name</td>
+        <td th:text="${category.descreption}">Description</td>
+        <td>
+            <a th:href="@{'/edit/' + ${category.categoryid}}">Edit</a>
+            <form th:action="@{'/delete/' + ${category.categoryid}}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit User</title>
+    <style>
+        body {
+            background-color: #04202c; /* Тёмный фон */
+            color: #c9d1c8; /* Светлый текст */
+        }
+
+        .user-edit-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+            av a {
+                color: #c9d1c8; /* Цвет ссылок */
+            }
+
+            nav a:hover {
+                color: #5b7065; /* Цвет ссылок при наведении */
+            }
+
+            h1, h2 {
+                color: #304040; /* Цвет заголовков */
+            }
+
+    .user-edit-container form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .user-edit-container label {
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #04202c;
+    }
+
+    .user-edit-container input, .user-edit-container select {
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .user-edit-container button {
+        background-color: #5b7065;
+        color: #c9d1c8;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 4px;
+
+    }
+
+    .user-edit-container button:hover {
+        background-color: #304040;
+    }
+
+    .links {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #304040;
+    }
+    </style>
+</head>
+<body>
+<div class="user-edit-container">
+    <h1>Edit User</h1>
+
+    <form th:action="@{|/useredit/${user.userid}|}" method="post">
+    <label for="username">Username:</label>
+        <input type="text" id="username" name="username" th:value="${user.username}" required/><br/>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:value="${user.email}" required/><br/>
+
+        <label for="role">Role:</label>
+            <select id="role" name="role">
+                <option th:value="'ADMIN'" th:text="'ADMIN'" th:selected="${user.isAdmin} == true"></option>
+                <option th:value="'USER'" th:text="'USER'" th:selected="${user.isAdmin} == false"></option>
+            </select><br/>
+
+        <button type="submit">Update User</button>
+    </form>
+
+    <div class="links">
+        <a th:href="@{'/userlist'}">Back to User List</a>
+    </div>
+    <div th:if="${error}" class="error-message" th:text="${error}"></div>
+    <div th:if="${success}" class="success-message" th:text="${success}"></div>
+</div>
+</body>
+</html>
