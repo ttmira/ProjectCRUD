@@ -114,6 +114,36 @@ public class usercontroller {
         return "redirect:/userhome/" + userid;
     }
 
+//    для админов загрузка фото
+    @PostMapping("/upload/imagesadmin/{userid}")
+    public String uploadImagesAdmin(
+            @PathVariable("userid")String userid,
+            @RequestParam("profileImage") MultipartFile file,
+            RedirectAttributes redirectAttributes) {
+        Long id = Long.parseLong(userid);
+        try {
+            String uploadDir = "C:\\Users\\Admin\\Downloads\\Lab5\\Lab5\\src\\main\\resources\\static\\images\\";
+            if (!file.isEmpty()) {
+                String file_name = file.getOriginalFilename();
+                Path file_path = Paths.get(uploadDir + file_name);
+
+                Files.copy(file.getInputStream(), file_path, StandardCopyOption.REPLACE_EXISTING);
+
+                Optional<User> user = usersrepository.findById(id);
+                if (user.isPresent()) {
+                    User u = user.get();
+                    u.setProfileImage("/images/" + file_name);
+                    usersrepository.save(u);
+                }
+            }
+            redirectAttributes.addFlashAttribute("message", "фото загрузилось!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("message", "фото не загрузилось!");
+        }
+        return "redirect:/adminhome/" + userid;
+    }
+
     //USER
     @GetMapping("/userhome/{username}")
     @PreAuthorize("hasAuthority('USER')or hasAuthority('ADMIN')")
