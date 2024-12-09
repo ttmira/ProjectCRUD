@@ -16,7 +16,7 @@ import java.util.Optional;
 @Repository
 public interface taskrepository extends JpaRepository<Task,Long> {
     List<Task> findByUser(User user);
-    List<Task>findByTitleContainingIgnoreCaseOrPriorityContainingIgnoreCase(String title,String priority);
+    Page<Task>findByTitleContainingIgnoreCaseOrPriorityContainingIgnoreCase(String title,String priority,Pageable pageable);
     Page<Task>findAll(Pageable pageable);
     Page<Task>findByTaskid(Long taskid,Pageable pageable);
     Optional<Task> findByTaskidAndUser(Long taskid,User user);

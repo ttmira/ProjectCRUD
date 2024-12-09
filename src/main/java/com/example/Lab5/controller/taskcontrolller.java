@@ -62,6 +62,7 @@ public class taskcontrolller {
         model.addAttribute("category",categorysservice.getallcategory());
         return "tasklist";
     }
+
     @GetMapping("/admin/tasks")
     @PreAuthorize("hasAuthority('ADMIN')")
     public String listAllTasks(
@@ -91,15 +92,15 @@ public class taskcontrolller {
     }
 
     @GetMapping("/search")
-    public String searchTask(@RequestParam("keyword")String keyword,Model model){
-        List<Task>tasks=tasksservice.searchTask(keyword);
+    public String searchTask(@RequestParam("keyword")String keyword,Model model,Pageable pageable){
+        Page<Task>tasks=tasksservice.searchTask(keyword,pageable);
         model.addAttribute("tasks",tasks);
         return "tasklist";
     }
 
     @GetMapping("/searchadmin")
-    public String searchTaskUser(@RequestParam("keyword")String keyword,Model model){
-        List<Task>tasks=tasksservice.searchTask(keyword);
+    public String searchTaskUser(@RequestParam("keyword")String keyword,Model model,Pageable pageable){
+        Page<Task>tasks=tasksservice.searchTask(keyword,pageable);
         List<User>users=usersservice.searchUser(keyword);
         model.addAttribute("users",users);
         model.addAttribute("tasks",tasks);
@@ -181,7 +182,7 @@ public class taskcontrolller {
         Long id = Long.parseLong(taskid);
         tasksservice.deletT(id,user);
         model.addAttribute("message", "task deleted successfully");
-        return "/DELETE";
+        return "user/tasks";
     }
 
 

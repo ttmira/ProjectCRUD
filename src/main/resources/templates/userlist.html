@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <title>User List</title>
     <style>body {
@@ -24,15 +24,7 @@
         color: #c9d1c8;
         text-align: center;
     }
-    .navbar {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        display: flex;
-        justify-content: space-around;
-        background-color: #304040;
-        padding: 10px 0;
-        border-radius: 5px;
-    }
+   
 
     .navbar a {
         color: #c9d1c8;
@@ -47,13 +39,7 @@
         color: white;
     }
 
-    /* Блок профиля */
-    .user-info {
-        background-color: #5b7065;
-        padding: 20px;
-        border-radius: 8px;
-        color: #c9d1c8;
-    }
+  
 
     .user-info p {
         font-size: 16px;
@@ -62,12 +48,6 @@
 
     .user-info strong {
         color: #304040;
-    }
-    .admin-info {
-        background-color: #5b7065;
-        padding: 20px;
-        border-radius: 8px;
-        color: #c9d1c8;
     }
 
     .admin-info p {
@@ -135,7 +115,7 @@
         padding: 5px;
         border: 1px solid #ccc;
         border-radius: 5px;
-        width: 200px; /* Ширина input */
+        width: 200px; 
     }
     .search-container button {
         background-color: transparent;
@@ -145,7 +125,7 @@
         color: #04202c;
     }
 
-    .search-container .fas.fa-search {
+    .search-container {
         color: #04202c;
     }
     </style>
@@ -154,10 +134,12 @@
     <h2>All Users</h2>
     <div class="search-container">
       <form method="GET" action="/search">
-        <input type="text"
-               name="keyword"
-               placeholder="Search users...">
-        <button type="submit">Search</button>
+          <label>
+              <input type="text"
+                     name="keyword"
+                     placeholder="Search users...">
+          </label>
+          <button type="submit">Search</button>
       </form>
     </div>
 

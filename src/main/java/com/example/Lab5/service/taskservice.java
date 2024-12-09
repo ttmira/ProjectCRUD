@@ -106,8 +106,8 @@ public class taskservice {
         return tasksrepository.findByStatus(status,pageable);
     }
 
-    public List<Task>searchTask(String keyword){
-        return tasksrepository.findByTitleContainingIgnoreCaseOrPriorityContainingIgnoreCase(keyword,keyword);
+    public Page<Task>searchTask(String keyword,Pageable pageable){
+        return tasksrepository.findByTitleContainingIgnoreCaseOrPriorityContainingIgnoreCase(keyword,keyword,pageable);
     }
 
 

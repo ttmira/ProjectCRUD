@@ -229,20 +229,21 @@
     <a th:href="@{/logout}">Logout</a>
   </nav>
 
+  <form th:action="@{/sendemail}" method="post">
   <div class="admin-info">
     <h2>Admin Profile</h2>
     <p><strong>Username:</strong> <span th:text="${admin.username}">admin_user</span></p>
     <p><strong>Email:</strong> <span th:text="${admin.email}">admin@example.com</span></p>
     <p><strong>Role:</strong> <span th:text="${admin.role}">Administrator</span></p>
   </div>
-  <div th:if="${user != null}" class="user-info">
+  <div th:if="${admin != null}" class="user-info">
     <h3>Profile Image</h3>
     <div class="upload-button-container">
       <div class="profile-header">
-        <img th:if="${user.profileImage != null}" th:src="@{${user.profileImage}}" alt="User Photo" class="profile-img">
-        <img th:if="${user.profileImage == null}" th:src="@{/images/photo_5379718457370733402_x.jpg}" alt="Default User Photo">
+        <img th:if="${admin.profileImage != null}" th:src="@{${admin.profileImage}}" alt="User Photo" class="profile-img">
+        <img th:if="${admin.profileImage == null}" th:src="@{/images/photo_5379718457370733402_x.jpg}" alt="Default User Photo">
       </div>
-      <form th:action="@{/upload/imagesadmin/{userid}(userid=${user.userid})}" method="post" enctype="multipart/form-data">
+      <form th:action="@{/upload/imagesadmin/{userid}(userid=${admin.userid})}" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <input type="file" id="profileIamge" name="profileImage" accept="image/*" required>
         </div>
