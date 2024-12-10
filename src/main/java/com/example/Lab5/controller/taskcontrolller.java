@@ -10,16 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,7 +66,7 @@ public class taskcontrolller {
     public String listAllTasks(
             @RequestParam(value = "category", required = false) Long categoryid,
             @RequestParam(value = "status", required = false) String status,
-            @RequestParam(value = "duedate", required = false)LocalDateTime duedate,
+            @RequestParam(value = "duedate", required = false) LocalDate duedate,
             @RequestParam(value = "sort", required = false) String sort,
             Model model, Pageable pageable){
         Page<Task> tasks;

@@ -2,153 +2,157 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <title>Add New Admin</title>
-   <style>body {
-       font-family: Arial, sans-serif;
-       background-color: #04202c;
-       color: #c9d1c8;
-       margin: 0;
-       padding: 0;
-   }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #04202c;
+            color: #c9d1c8;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #304040;
+            color: #c9d1c8;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        header .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-   .container {
-       width: 90%;
-       max-width: 400px;
-       margin: 50px auto;
-       padding: 20px;
-       background-color: #304040;
-       border-radius: 10px;
-       box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-   }
+        header .nav-actions form {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
 
-   h2 {
-       color: #c9d1c8;
-       text-align: center;
-   }
-   .navbar {
-       margin-top: 20px;
-       margin-bottom: 20px;
-       display: flex;
-       justify-content: space-around;
-       background-color: #304040;
-       padding: 10px 0;
-       border-radius: 5px;
-   }
+        header .nav-actions form input[type="text"] {
+            padding: 5px;
+            border: 1px solid #5b7065;
+            border-radius: 5px;
+            background-color: #04202c;
+            color: #c9d1c8;
+        }
 
-   .navbar a {
-       color: #c9d1c8;
-       text-decoration: none;
-       padding: 10px 20px;
-       font-size: 16px;
-       border-radius: 5px;
-   }
+        header .nav-actions form button {
+            background: none;
+            border: none;
+            color: #c9d1c8;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-   .navbar a:hover {
-       background-color: #5b7065;
-       color: white;
-   }
+        .container {
+            width: 90%;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #304040;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
 
-   /* Блок профиля */
-   .user-info {
-       background-color: #5b7065;
-       padding: 20px;
-       border-radius: 8px;
-       color: #c9d1c8;
-   }
+        h1, h2 {
+            color: #c9d1c8;
+            text-align: center;
+        }
 
-   .user-info p {
-       font-size: 16px;
-       margin: 10px 0;
-   }
+        a {
+            color: #c9d1c8;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
 
-   .user-info strong {
-       color: #304040;
-   }
-   .admin-info {
-       background-color: #5b7065;
-       padding: 20px;
-       border-radius: 8px;
-       color: #c9d1c8;
-   }
+        a:hover {
+            text-decoration: underline;
+        }
 
-   .admin-info p {
-       font-size: 16px;
-       margin: 10px 0;
-   }
+        button {
+            background-color: #5b7065;
+            color: #c9d1c8;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-   .admin-info strong {
-       color: #04202c;
-   }
-   a {
-       color: #c9d1c8;
-       text-decoration: none;
-       display: block;
-       text-align: center;
-       margin-top: 10px;
-   }
+        button:hover {
+            background-color: #304040;
+        }
 
-   a:hover {
-       text-decoration: underline;
-   }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #5b7065;
+            background-color: #304040;
+            color: #c9d1c8;
+        }
 
-   button {
-       background-color: #5b7065;
-       color: #c9d1c8;
-       border: none;
-       border-radius: 5px;
-       padding: 10px 15px;
-       cursor: pointer;
-       width: 100%;
-       margin-top: 10px;
-   }
+        label {
+            color: #c9d1c8;
+            margin-top: 10px;
+            display: block;
+        }
 
-   button:hover {
-       background-color: #304040;
-   }
+        .links a {
+            margin-top: 20px;
+            font-size: 16px;
+        }
 
-   input, select {
-       width: 100%;
-       padding: 8px;
-       margin-top: 5px;
-       border-radius: 5px;
-       border: 1px solid #5b7065;
-       background-color: #304040;
-       color: #c9d1c8;
-   }
-
-   label {
-       color: #c9d1c8;
-       margin-top: 10px;
-       display: block;
-   }
-
-   .task-item {
-       margin-top: 10px;
-   }
-
-   .error-message {
-       color: red;
-       font-size: 14px;
-       margin-top: 10px;
-   }</style>
+        .icon {
+            margin-right: 8px;
+        }
+    </style>
 </head>
 <body>
+<header>
+    <h1><i class="fa-solid fa-user-plus"></i> Add New Admin</h1>
+    <div class="nav-actions">
+        <a th:href="@{'/adminhome/{username}'}">
+            <i class="fas fa-home"></i>
+        </a>
+
+        <a href="/logout">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+    </div>
+</header>
 <div class="container">
-    <h1>Add New Admin</h1>
     <div>
         <p th:if="${success}" th:text="${success}" style="color: green;"></p>
         <p th:if="${error}" th:text="${error}" style="color: red;"></p>
     </div>
 
-    <h2>Assign Admin Role to Existing User</h2>
+    <h2><i class="fa-solid fa-users-cog"></i> Assign Admin Role to Existing User</h2>
     <form th:action="@{/newadmin}" method="post">
         <label for="userid">Choose a User:</label>
         <select name="userid" id="userid">
             <option th:each="user : ${users}" th:value="${user.userid}" th:text="${user.username}"></option>
         </select>
-        <button type="submit">Make Admin</button>
+        <button type="submit"><i class="fa-solid fa-user-shield"></i> Make Admin</button>
     </form>
 
-    <h2>Create New User and Assign as Admin</h2>
+    <h2><i class="fa-solid fa-user"></i> Create New User and Assign as Admin</h2>
     <form th:action="@{/newadmin}" method="post">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
@@ -159,10 +163,10 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
 
-        <button type="submit">Create and Assign Admin</button>
+        <button type="submit"><i class="fa-solid fa-user-plus"></i> Create and Assign Admin</button>
     </form>
     <div class="links">
-        <a href="/userlist">Back to User List</a>
+        <a href="/userlist"><i class="fa-solid fa-arrow-left"></i> Back to User List</a>
     </div>
 </div>
 </body>

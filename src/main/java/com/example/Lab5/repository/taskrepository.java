@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +28,7 @@ public interface taskrepository extends JpaRepository<Task,Long> {
     Page<Task>findByUserOrderByStatus(User user,Pageable pageable);
     Page<Task> findByCategory(Category category,Pageable pageable);
     Page<Task> findByStatus(String status,Pageable pageable);
-    Page<Task> findAllOrderByDuedate(LocalDateTime duedate, Pageable pageable);
+    Page<Task> findAllOrderByDuedate(LocalDate duedate, Pageable pageable);
     Page<Task> findAllOrderByStatus(String status,Pageable pageable);
 
 }

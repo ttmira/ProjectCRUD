@@ -93,7 +93,7 @@ public class taskservice {
         return tasksrepository.findByUserAndStatus(user, status,pageable);
     }
 
-    public Page<Task> sortbydataadmin(LocalDateTime duedate, Pageable pageable){
+    public Page<Task> sortbydataadmin(LocalDate duedate, Pageable pageable){
         return tasksrepository.findAllOrderByDuedate(duedate,pageable);
     }
     public Page<Task> sortbystatusadmin(String status,Pageable pageable) {
